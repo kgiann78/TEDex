@@ -9,10 +9,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<sql:query var="result" dataSource="jdbc/tedex">
-    SELECT * FROM user WHERE user.username = "manager"
-</sql:query>
-
 
 <%
     out.println(request.getParameter("username"));
