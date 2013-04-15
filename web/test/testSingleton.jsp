@@ -47,6 +47,17 @@
             for (User item : context.getUsers(null)) {
                 out.println(item.getId() + " " + item.getUsername() + " " + item.getPassword() + "<br/>");
             }
+            
+            out.println("<br/><br/>");
+            for (User item : context.getUsers("WHERE username = 'manager'")) {
+                out.println(item.getId() + " " + item.getUsername() + " " + item.getPassword() + "<br/>");
+            }
+            
+            out.println("<br/><br/>");
+            for (User item : context.getUsers("WHERE username = 'scheduler' AND password = 'qwerty'")) {
+                out.println(item.getId() + " " + item.getUsername() + " " + item.getPassword() + "<br/>");
+            }
+                    
         %>
         
     </body>
