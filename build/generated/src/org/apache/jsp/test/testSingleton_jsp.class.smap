@@ -1,0 +1,12 @@
+SMAP
+testSingleton_jsp.java
+JSP
+*S JSP
+*F
++ 0 testSingleton.jsp
+test/testSingleton.jsp
+*L
+5,18:49
+23,20:68
+42,5:88
+*E
