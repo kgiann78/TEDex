@@ -19,13 +19,16 @@ import model.ConnectionPool;
 public class DataContext {
     private Connection con;
     
-    public List<User> getAllUsers() {
+    public List<User> getUsers(String whereClause) {
         try {
             ArrayList<User> users = new ArrayList<User>();
             
             con = ConnectionPool.INSTANCE.getConnection();
             Statement stmt = con.createStatement();
             String strSQL = "SELECT * FROM user";
+            if (whereClause != null && !whereClause.isEmpty()) {
+                strSQL = strSQL + " " + whereClause;
+            }
             ResultSet rs = stmt.executeQuery(strSQL);
 
             while( rs.next() ) 
@@ -38,6 +41,21 @@ public class DataContext {
         catch (SQLException ex) {
             ex.printStackTrace();
             return null;
+        }
+    }
+    
+    public void addUser(User user) {
+        try {
+            con = ConnectionPool.INSTANCE.getConnection();
+            Statement stmt = con.createStatement();
+            String strSQL = "INSERT INTO user (username, password) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "')";
+            
+            stmt.executeUpdate(strSQL);
+            
+            con.close();
+        } 
+        catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 }

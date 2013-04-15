@@ -4,6 +4,7 @@
     Author     : alkis
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="entities.DataContext"%>
 <%@page import="entities.User"%>
 <%@page import="java.sql.ResultSet"%>
@@ -42,8 +43,9 @@
 //            }
             
             DataContext context = new DataContext();
-            for (User item : context.getAllUsers()) {
-                out.println(item.getId() + " " + item.getUsername() + " " + item.getPassword());
+            context.addUser(new User(0, "scheduler", "qwerty"));
+            for (User item : context.getUsers(null)) {
+                out.println(item.getId() + " " + item.getUsername() + " " + item.getPassword() + "<br/>");
             }
         %>
         
