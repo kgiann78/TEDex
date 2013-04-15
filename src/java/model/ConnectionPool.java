@@ -28,7 +28,7 @@ public enum ConnectionPool
         try 
         {
             InitialContext ic = new InitialContext();
-            conPool = ( DataSource ) ic.lookup("jdbc/PointBase");
+            conPool = ( DataSource ) ic.lookup("jdbc/tedex");
         } catch (NamingException ex) {
             Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
         }
