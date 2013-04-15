@@ -4,6 +4,8 @@
     Author     : alkis
 --%>
 
+<%@page import="entities.DataContext"%>
+<%@page import="entities.User"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.SQLException"%>
@@ -20,25 +22,29 @@
         <h1>Hello World!</h1>
         <p>mpla</p>
         <%
-            try 
-            {
-                Connection con = ConnectionPool.INSTANCE.getConnection();
-                Statement stmt = con.createStatement();
-                String strSQL = "SELECT * FROM user";
-                ResultSet rs = stmt.executeQuery(strSQL);
-                
-                while( rs.next() ) 
-                {
-                    out.println(rs.getInt("id"));
-                    out.println(rs.getString("username"));
-                    out.println(rs.getString("password")); 
-                }
-                con.close();
-                
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+//            try 
+//            {
+//                Connection con = ConnectionPool.INSTANCE.getConnection();
+//                Statement stmt = con.createStatement();
+//                String strSQL = "SELECT * FROM user";
+//                ResultSet rs = stmt.executeQuery(strSQL);
+//                
+//                while( rs.next() ) 
+//                {
+//                    out.println(rs.getInt("id"));
+//                    out.println(rs.getString("username"));
+//                    out.println(rs.getString("password")); 
+//                }
+//                con.close();
+//                
+//            } catch (SQLException ex) {
+//                ex.printStackTrace();
+//            }
             
+            DataContext context = new DataContext();
+            for (User item : context.getAllUsers()) {
+                out.println(item.getId() + " " + item.getUsername() + " " + item.getPassword());
+            }
         %>
         
     </body>
