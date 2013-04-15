@@ -54,6 +54,7 @@
             }
             
             out.println("<br/><br/>");
+            context.deleteUser(new User(0, "scheduler", "qwerty"));
             for (User item : context.getUsers("WHERE username = 'scheduler' AND password = 'qwerty'")) {
                 out.println(item.getId() + " " + item.getUsername() + " " + item.getPassword() + "<br/>");
             }

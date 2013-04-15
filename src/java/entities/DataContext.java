@@ -58,4 +58,20 @@ public class DataContext {
             ex.printStackTrace();
         }
     }
+    
+    public void deleteUser(User user) {
+        try {
+            User tmp = this.getUsers("Where username = '" + user.getUsername() + "'").get(0);
+            con = ConnectionPool.INSTANCE.getConnection();
+            Statement stmt = con.createStatement();
+            String strSQL = "DELETE FROM user WHERE id = '" + tmp.getId() + "'";
+            
+            stmt.executeUpdate(strSQL);
+            
+            con.close();
+        } 
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
