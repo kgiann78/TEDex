@@ -47,6 +47,7 @@
                             <a href="register" class="categoryLabelText">
                                 Δημιουργία Νέου Χρήστη
                             </a>
+                            
                     </div>
                     
                 </div>
