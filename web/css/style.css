@@ -1,0 +1,28 @@
+/* 
+    Document   : tedex
+    Created on : Apr 7, 2013, 3:10:27 PM
+    Author     : Constantine
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 850px;
+    margin: 20px auto;
+}
+
+#header {
+    height: 150px;
+    /*border: thin solid black;*/
+}
+
+#footer {
+    height: 60px;
+    clear: left;    
+    /*border: thin solid black;*/
+}

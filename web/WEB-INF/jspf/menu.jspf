@@ -1,25 +1,35 @@
 <%-- any content can be specified here e.g.: --%>
 <%@page import="java.util.ArrayList"%>
 <%@ page pageEncoding="UTF-8" %>
-<div id="indexLeftColumn">
+<% 
+    if (session.getAttribute("username") != null) {
+        out.println("<div id=\"menu\">");
+        out.println("this is the menu for a logged user");
+        out.println("</div>");
+        out.println("<hr>");
+    }
+%>
+
+
+<!--<div id="indexLeftColumn">
     <div id="welcomeText">
-        <% if(session.getAttribute("username") != null) {
-            String username = session.getAttribute("username").toString();
-            out.println("<span class=\"welcome\">Καλώς ήρθατε " + username + "</span>");
-            out.println("<hr>");
-            ArrayList roles = (ArrayList)session.getAttribute("roles");
-            
-            for(int i=0; i < roles.size(); i++) {
-                out.println(roles.get(i).toString());
-            }
+<% if (session.getAttribute("username") != null) {
+        String username = session.getAttribute("username").toString();
+        out.println("<span class=\"welcome\">Καλώς ήρθατε " + username + "</span>");
+        out.println("<hr>");
+        ArrayList roles = (ArrayList) session.getAttribute("roles");
+
+        for (int i = 0; i < roles.size(); i++) {
+            out.println(roles.get(i).toString());
+        }
 //            out.print(request.getParameter("username"));
-        } else {
-            out.println("<p class=\"welcome\">Καλώς ήρθατε</p>");
-            out.println("<div class=\"info\">");
-            out.println("<p>Αυτή είναι ιστοσελίδα της εργασίας του μαθήματος </p>");
-            out.println("<p>ΤΕχνολογίες λογισμικού Διαδικτύου (TeD Ex)</p>");
-            out.println("<hr>");
-            out.println("</div>");
-        } %>
-    </div>
+    } else {
+        out.println("<p class=\"welcome\">Καλώς ήρθατε</p>");
+        out.println("<div class=\"info\">");
+        out.println("<p>Αυτή είναι ιστοσελίδα της εργασίας του μαθήματος </p>");
+        out.println("<p>ΤΕχνολογίες λογισμικού Διαδικτύου (TeD Ex)</p>");
+        out.println("<hr>");
+        out.println("</div>");
+    }%>
 </div>
+</div>-->

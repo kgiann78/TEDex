@@ -49,7 +49,7 @@ select * from user
         ResultSet rs = statement.executeQuery();
         
         while (rs.next()) {
-            out.print(rs.getString("username") + "<br/>");
+            out.print(rs.getString("username") + "< br >");
         }
 
 %>

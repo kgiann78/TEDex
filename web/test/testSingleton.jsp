@@ -4,8 +4,8 @@
     Author     : alkis
 --%>
 
+<%@page import="model.UserModel"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="entities.DataContext"%>
 <%@page import="entities.User"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -21,7 +21,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <p>mpla</p>
         <%
 //            try 
 //            {
@@ -42,22 +41,26 @@
 //                ex.printStackTrace();
 //            }
             
-            DataContext context = new DataContext();
-            context.addUser(new User(0, "scheduler", "qwerty"));
-            for (User item : context.getUsers(null)) {
+            UserModel uModel = new UserModel();
+            uModel.addUser(new User(0, "manager", "qwerty"));
+            uModel.addUser(new User(0, "scheduler", "qwerty"));
+            uModel.addUser(new User(0, "seller", "qwerty"));
+            uModel.addUser(new User(0, "inventory_man", "qwerty"));
+
+
+            for (User item : uModel.getUsers()) {
                 out.println(item.getId() + " " + item.getUsername() + " " + item.getPassword() + "<br/>");
             }
             
             out.println("<br/><br/>");
-            for (User item : context.getUsers("WHERE username = 'manager'")) {
-                out.println(item.getId() + " " + item.getUsername() + " " + item.getPassword() + "<br/>");
-            }
+            User user = uModel.getUserByName("scheduler");
+            out.println(user.getId() + " " + user.getUsername() + " " + user.getPassword() + "<br/>");
             
-            out.println("<br/><br/>");
-            context.deleteUser(new User(0, "scheduler", "qwerty"));
-            for (User item : context.getUsers("WHERE username = 'scheduler' AND password = 'qwerty'")) {
-                out.println(item.getId() + " " + item.getUsername() + " " + item.getPassword() + "<br/>");
-            }
+            // out.println("<br/><br/>");
+            // uModel.deleteUser(user.getId());
+            // for (User item : uModel.getUsers()) {
+            //    out.println(item.getId() + " " + item.getUsername() + " " + item.getPassword() + "<br/>");
+            // }
                     
         %>
         
