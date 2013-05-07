@@ -37,5 +37,7 @@
             </table>
         </form>
     </div>
+    <div id="register">
     <p>Αν δεν έχετε λογαριασμό <a href="register">δημιουργήστε έναν</a>.</p>
+    </div>
 </div>

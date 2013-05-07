@@ -11,5 +11,6 @@
         <div id="main">
             <div id="header">
                 <a href="/TEDex"><span id="logo">TeD Ex logo</span></a>
+                <a href="http://localhost:8080/TEDex/logout">logout</a>
             </div>
             <hr>

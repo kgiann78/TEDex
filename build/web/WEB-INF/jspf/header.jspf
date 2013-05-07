@@ -4,28 +4,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/tedex.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
         <title>Ted Ex</title>
     </head>
     <body>
         <div id="main">
             <div id="header">
-                <div id="widgetBar">
-
-                    <div class="headerWidget">
-                        [ language toggle ]
-                    </div>
-
-                    <div class="headerWidget">
-                        [ shopping cart widget ]
-                    </div>
-
-                </div>
-
-                <a href="/TEDex">
-                    <!-- <img src="#" id="logo" alt="Ted Ex logo">-->
-                    <span id="logo">TeD Ex logo</span>
-                </a>
-                    <span id="logoText">TeD Ex</span>
-                    <!--<img src="#" id="logoText" alt="Ted Ex">-->
+                <a href="/TEDex"><span id="logo">TeD Ex logo</span></a>
+                <a href="http://localhost:8080/TEDex/logout">logout</a>
             </div>
+            <hr>

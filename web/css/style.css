@@ -26,3 +26,20 @@ body {
     clear: left;    
     /*border: thin solid black;*/
 }
+
+#menu ul{
+    float:left;
+}
+
+#menu a{
+    float:left;
+    padding:0.2em 0.6em;
+}
+
+#menu li{
+    display:inline;
+}
+
+.clear {
+    clear: both;
+}

@@ -18,7 +18,16 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControllerServlet", 
         loadOnStartup = 1,
-        urlPatterns = {"/administrator", "/warehouse", "/suppliers", "/login", "/register"})
+        urlPatterns = {"/administrator", 
+            "/warehouses", 
+            "/suppliers", 
+            "/roles", 
+            "/users", 
+            "/products", 
+            "/login",
+            "/logout",
+            "/register"})
+
 public class ControllerServlet extends HttpServlet {
 
     /**
@@ -69,25 +78,25 @@ public class ControllerServlet extends HttpServlet {
 
         // if administrator page is requested
         if (userPath.equals("/administrator")) {
-            // TODO: Implement category request
-
         // if warehouse page is requested
-        } else if (userPath.equals("/warehouse")) {
-            // TODO: Implement cart page request
+        } else if (userPath.equals("/warehouses")) {
+            userPath = "/warehouses";
 
-            userPath = "/warehouse";
-
-        // if suppliers page is requested
+            // if suppliers page is requested
         } else if (userPath.equals("/suppliers")) {
-            // TODO: Implement checkout page request
             userPath = "/suppliers";
+        
+            // if roles page is requested
+        } else if (userPath.equals("/roles")) {
+            userPath = "/roles";
         }
         else if (userPath.equals("/login")) {
-            // TODO: Implement checkout page request
             userPath = "/login";
         }
+        else if (userPath.equals("/logout")) {
+            userPath = "/logout";
+        }
         else if (userPath.equals("/register")) {
-            // TODO: Implement checkout page request
             userPath = "/register";
         }
         

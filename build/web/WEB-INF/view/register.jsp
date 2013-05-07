@@ -5,4 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<h1>Hello Register!</h1>
+<%
+    if (session.getAttribute("username") != null) {
+        out.println("<h1>Hello " + session.getAttribute("username") + "!</h1>");
+    }
+%>
