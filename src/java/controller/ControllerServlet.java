@@ -18,15 +18,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControllerServlet", 
         loadOnStartup = 1,
-        urlPatterns = {"/administrator", 
-            "/warehouses", 
+        urlPatterns = {"/register",
+            "/confirm", 
+            "/stores", 
             "/suppliers", 
             "/roles", 
             "/users", 
-            "/products", 
-            "/login",
-            "/logout",
-            "/register"})
+            "/products"})
 
 public class ControllerServlet extends HttpServlet {
 
@@ -74,30 +72,21 @@ public class ControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userPath = request.getServletPath();
-        String parameter = request.getParameter("username");
-
-        // if administrator page is requested
-        if (userPath.equals("/administrator")) {
-        // if warehouse page is requested
-        } else if (userPath.equals("/warehouses")) {
-            userPath = "/warehouses";
-
-            // if suppliers page is requested
-        } else if (userPath.equals("/suppliers")) {
-            userPath = "/suppliers";
         
-            // if roles page is requested
-        } else if (userPath.equals("/roles")) {
-            userPath = "/roles";
-        }
-        else if (userPath.equals("/login")) {
-            userPath = "/login";
-        }
-        else if (userPath.equals("/logout")) {
-            userPath = "/logout";
-        }
-        else if (userPath.equals("/register")) {
+        if (userPath.equals("/register")) {
             userPath = "/register";
+        }
+        else if (userPath.equals("/confirm")) {
+            userPath = "/confirm";
+        }
+        else if (userPath.equals("/stores")) {
+            userPath = "/stores";
+        }
+        else if (userPath.equals("/suppliers")) {
+            userPath = "/suppliers";
+        } 
+        else if (userPath.equals("/roles")) {
+            userPath = "/roles";
         }
         
         // use RequestDispatcher to forward request internally
@@ -105,7 +94,6 @@ public class ControllerServlet extends HttpServlet {
 
         try {
             request.getRequestDispatcher(url).forward(request, response);
-            
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -126,18 +114,11 @@ public class ControllerServlet extends HttpServlet {
         String userPath = request.getServletPath();
 
         // if addToCart action is called
-        if (userPath.equals("/addToCart")) {
-            // TODO: Implement add product to cart action
-
-        // if updateCart action is called
-        } else if (userPath.equals("/updateCart")) {
-            // TODO: Implement update cart action
-
-        // if purchase action is called
-        } else if (userPath.equals("/purchase")) {
-            // TODO: Implement purchase action
-
-            userPath = "/confirmation";
+        if (userPath.equals("/register")) {
+            userPath = "/register";
+        }
+        else if (userPath.equals("/confirm")) {
+            userPath = "/confirm";
         }
 
         // use RequestDispatcher to forward request internally

@@ -1,44 +1,79 @@
 <%-- any content can be specified here e.g.: --%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.Enumeration"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page pageEncoding="UTF-8" %>
+<%    
+    if (session.getAttribute("username") != null) {
+%>
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <ul class="nav" role="navigation">
+                <%
+                    if (session.getAttribute("roles") != null) {
+                        List<String> roles = (ArrayList<String>) session.getAttribute("roles");
+                        if (roles.contains("administrator")) {
+                            out.println("<li><a href=\"roles\">roles</a></li>");
+                            out.println("<li><a href=\"users\">users</a></li>");
+                            out.println("<li><a href=\"stores\">stores</a></li>");
+                            out.println("<li><a href=\"suppliers\">suppliers</a></li>");
+                            out.println("<li><a href=\"products\">products</a></li>");
+                        }
 
-<div id="menu">
+                        if (roles.contains("storekeeper") && !roles.contains("administrator")) {
+                            out.println("<li><a href=\"stores\">stores</a></li>");
+                        }
+
+                        if (roles.contains("scheduler") && !roles.contains("administrator")) {
+                            out.println("<li><a href=\"suppliers\">suppliers</a></li>");
+                            out.println("<li><a href=\"products\">products</a></li>");
+                        }
+                    }
+                %>
+                <!-- 
+                <li class="dropdown">
+                    <a id="dLabel" class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+                        Παραγγελίες
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li role="presentation"><a tabindex="-1" href="#">Action</a></li>
+                        <li role="presentation"><a tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a tabindex="-1" href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li role="presentation"><a tabindex="-1" href="#">Separated link</a></li>
+                    </ul>
+                </li>
+                -->
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<%
+    }
+%>
+
+<!--<div id="menu">
     <ul>
-        <% 
-            if(session.getAttribute("roles")!=null){
-                ArrayList roles = (ArrayList) session.getAttribute("roles");
-                if(roles.contains("Manager")){ %>
-                <li><a href="http://localhost:8080/TEDex/roles">roles</a></li>
-                <li><a href="http://localhost:8080/TEDex/users">users</a></li>
-                <li><a href="http://localhost:8080/TEDex/warehouses">warehouses</a></li>
-                <li><a href="http://localhost:8080/TEDex/suppliers">suppliers</a></li>
-                <li><a href="http://localhost:8080/TEDex/products">products</a></li>
-                <%}
-            }
-        %>
-    </ul>
+<%
+//            if (session.getAttribute("username") != null) {
+//                if (session.getAttribute("roles") != null) {
+//                    ArrayList roles = (ArrayList) session.getAttribute("roles");
+//                    if (roles.contains("Manager")) {
+//                        out.println("<li><a href=\"http://localhost:8080/TEDex/roles\">roles</a></li>");
+//                        out.println("<li><a href=\"http://localhost:8080/TEDex/users\">users</a></li>");
+//                        out.println("<li><a href=\"http://localhost:8080/TEDex/warehouses\">warehouses</a></li>");
+//                        out.println("<li><a href=\"http://localhost:8080/TEDex/suppliers\">suppliers</a></li>");
+//                        out.println("<li><a href=\"http://localhost:8080/TEDex/products\">products</a></li>");
+//                    }
+//                }
+//            }
+%>
+</ul>
 </div>
 <div class="clear"></div>
-<br>
-<!--<div id="indexLeftColumn">
-    <div id="welcomeText">
-<% if (session.getAttribute("username") != null) {
-        String username = session.getAttribute("username").toString();
-        out.println("<span class=\"welcome\">Καλώς ήρθατε " + username + "</span>");
-        out.println("<hr>");
-        ArrayList roles = (ArrayList) session.getAttribute("roles");
-
-        for (int i = 0; i < roles.size(); i++) {
-            out.println(roles.get(i).toString());
-        }
-//            out.print(request.getParameter("username"));
-    } else {
-        out.println("<p class=\"welcome\">Καλώς ήρθατε</p>");
-        out.println("<div class=\"info\">");
-        out.println("<p>Αυτή είναι ιστοσελίδα της εργασίας του μαθήματος </p>");
-        out.println("<p>ΤΕχνολογίες λογισμικού Διαδικτύου (TeD Ex)</p>");
-        out.println("<hr>");
-        out.println("</div>");
-    }%>
-</div>
-</div>-->
+<br>-->

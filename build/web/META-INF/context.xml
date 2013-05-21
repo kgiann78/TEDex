@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/TEDex"/>
+<Context antiJARLocking="true" path="/TEDex">
+    <Resource name="jdbc/tedex"
+            auth="Container"
+            factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+            type="javax.sql.DataSource"
+            driverClassName="com.mysql.jdbc.Driver"
+            username="root" password="root"
+            url="jdbc:mysql://localhost:8889/TEDex?zeroDateTimeBehavior=convertToNull"
+            maxActive="100" maxIdle="20" minIdle="15" initialSize="15" maxWait="10000"
+            removeAbandoned="true" removeAbandonedTimeout="60"/>
+</Context>

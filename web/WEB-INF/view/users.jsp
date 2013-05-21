@@ -12,6 +12,6 @@
         <title>Users Page</title>
     </head>
     <body>
-        <h1>This is the users page!</h1>
+        <h1>This is the user's <% out.print(session.getAttribute("username")); %> page!</h1>
     </body>
 </html>

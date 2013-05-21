@@ -4,6 +4,8 @@
  */
 package entities;
 
+import java.util.ArrayList;
+
 
 /**
  *
@@ -13,17 +15,20 @@ public class User {
     private int id;
     private String username;
     private String password;
+    private ArrayList<Role> roles;
     
     public User() {
         this.id = -1;
         this.username = "";
         this.password = "";
+        this.roles = new ArrayList<Role>();
     }
     
     public User(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.roles = new ArrayList<Role>();
     }
     
     //getters
@@ -38,6 +43,10 @@ public class User {
     public String getPassword() {
         return this.password;
     }
+
+    public ArrayList<Role> getRoles() {
+        return this.roles;
+    }
     
     //setters
     public void setId(int id) {
@@ -50,5 +59,9 @@ public class User {
     
     public void setPassword(String password) {
         this.password = password;
-    }    
+    }
+
+    public void setRole(Role role) {
+        this.roles.add(role);
+    }
 }
