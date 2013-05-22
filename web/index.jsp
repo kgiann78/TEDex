@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <div class="hero-unit">
 	<h3>Warehouse Management Web Application</h3>
         
