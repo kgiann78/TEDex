@@ -1,0 +1,37 @@
+<%-- any content can be specified here e.g.: --%>
+<%--<%@ page pageEncoding="UTF-8" %>--%>
+<%@ page pageEncoding="UTF-8" %>
+<%
+String message = "";
+    String error = "";
+    String warning = "";
+    if (response.getHeader("message") != null)
+        message = response.getHeader("message");
+    
+    if (response.getHeader("error") != null)
+        error = response.getHeader("error"); 
+
+    if (response.getHeader("warning") != null)
+        warning = response.getHeader("warning");
+    
+    if(!message.isEmpty()) { %>
+                <div id="successMessage" class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" >&times;</button>
+                    <strong>Συγχαρητήρια!</strong> <%= message %>
+                </div>
+                <% } %>
+                
+                <% if(!error.isEmpty()) { %>
+                <div id="alertMessage" class="alert alert-block alert-error">
+                    <button type="button" class="close" data-dismiss="alert" >&times;</button>
+                    <strong>Προσοχή!</strong> <%= error %>
+                </div>
+                <% } %>
+                <% if(!warning.isEmpty()) {%>
+                <div class="bs-docs-example">
+                    <div class="alert alert-block fade in">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>Προσοχή!</strong> <%= warning %>
+                    </div>
+                </div>
+                <% } %>

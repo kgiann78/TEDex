@@ -1,35 +1,62 @@
 <%-- any content can be specified here e.g.: --%>
+<%@page import="extensions.Permission"%>
+<%@page import="extensions.Service"%>
+<%@page import="entities.Role"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page pageEncoding="UTF-8" %>
-<%    
-    if (session.getAttribute("username") != null) {
+<%
+
+    if (request.getSession().getAttribute("username" + request.getSession().getId()) != null && permissions.size() > 0) {
 %>
 <div class="navbar">
     <div class="navbar-inner">
         <div class="container">
             <ul class="nav" role="navigation">
                 <%
-                    if (session.getAttribute("roles") != null) {
-                        List<String> roles = (ArrayList<String>) session.getAttribute("roles");
-                        if (roles.contains("administrator")) {
-                            out.println("<li><a href=\"roles\">roles</a></li>");
-                            out.println("<li><a href=\"users\">users</a></li>");
-                            out.println("<li><a href=\"stores\">stores</a></li>");
-                            out.println("<li><a href=\"suppliers\">suppliers</a></li>");
-                            out.println("<li><a href=\"products\">products</a></li>");
-                        }
+                    boolean perm_storage = false;
+                    boolean perm_product = false;
+                    boolean perm_supplier = false;
 
-                        if (roles.contains("storekeeper") && !roles.contains("administrator")) {
-                            out.println("<li><a href=\"stores\">stores</a></li>");
-                        }
+                    //roles is in error because it is not declared. Though declaration is in both header files, so there is no
+                    //need to redeclare it in the rest of the body
+                    for (Permission permission : permissions) {
+                        if (permission.equals(Permission.administrator)) {
+                            out.println("<li><a href=\"" + Service.USER.toString() + "\">Χρήστες</a></li>");
+                            out.println("<li><a href=\"" + Service.ROLE.toString() + "\">Ρόλοι</a></li>");
+                            out.println("<li><a href=\"" + Service.STORAGE.toString() + "\">Αποθήκες</a></li>");
+                            out.println("<li><a href=\"" + Service.PRODUCT.toString() + "\">Προϊόντα</a></li>");
+                            out.println("<li><a href=\"" + Service.SUPPLIER.toString() + "\">Προμηθευτές</a></li>");
+                        } else {
+                            if (permission.equals(Permission.storage_read)
+                                    || permission.equals(Permission.storage_write)) {
+                                perm_storage = true;
+                            }
 
-                        if (roles.contains("scheduler") && !roles.contains("administrator")) {
-                            out.println("<li><a href=\"suppliers\">suppliers</a></li>");
-                            out.println("<li><a href=\"products\">products</a></li>");
+                            if (permission.equals(Permission.product_read)
+                                    || permission.equals(Permission.product_write)) {
+                                perm_product = true;
+                            }
+
+                            if (permission.equals(Permission.supplier_read)
+                                    || permission.equals(Permission.supplier_write)) {
+                                perm_supplier = true;
+                            }
                         }
+                    }
+
+                    if (perm_storage) {
+                        out.println("<li><a href=\"" + Service.STORAGE.toString() + "\">Αποθήκες</a></li>");
+                    }
+
+                    if (perm_product) {
+                        out.println("<li><a href=\"" + Service.PRODUCT.toString() + "\">Προϊόντα</a></li>");
+                    }
+
+                    if (perm_supplier) {
+                        out.println("<li><a href=\"" + Service.SUPPLIER.toString() + "\">Προμηθευτές</a></li>");
                     }
                 %>
                 <!-- 
@@ -56,24 +83,3 @@
 <%
     }
 %>
-
-<!--<div id="menu">
-    <ul>
-<%
-//            if (session.getAttribute("username") != null) {
-//                if (session.getAttribute("roles") != null) {
-//                    ArrayList roles = (ArrayList) session.getAttribute("roles");
-//                    if (roles.contains("Manager")) {
-//                        out.println("<li><a href=\"http://localhost:8080/TEDex/roles\">roles</a></li>");
-//                        out.println("<li><a href=\"http://localhost:8080/TEDex/users\">users</a></li>");
-//                        out.println("<li><a href=\"http://localhost:8080/TEDex/warehouses\">warehouses</a></li>");
-//                        out.println("<li><a href=\"http://localhost:8080/TEDex/suppliers\">suppliers</a></li>");
-//                        out.println("<li><a href=\"http://localhost:8080/TEDex/products\">products</a></li>");
-//                    }
-//                }
-//            }
-%>
-</ul>
-</div>
-<div class="clear"></div>
-<br>-->

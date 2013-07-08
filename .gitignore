@@ -1,3 +1,8 @@
-nbproject/project.properties
-nbproject/private/private.properties
-nbproject/private/private.xml
+# Exclude OS generated files #
+##############################
+.DS_Store
+.DS_Store?
+
+# Exclude swap files from mvim #
+################################
+*.swp

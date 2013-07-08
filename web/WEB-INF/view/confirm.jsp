@@ -5,10 +5,18 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<h1>Hello confirm!</h1>
 <%
-    if (request.getParameter("username") != null)
-        out.println(request.getParameter("username").toString()); 
-    else
-        response.sendRedirect("/TEDex");
+    if (request.getParameter("username") != null) {
+%>
+        <h1>Επιβεβαίωση Εγγραφής</h1>
+        <br><br>
+        <h3><p class="lead">Συγχαρητήρια, <% out.println(request.getParameter("username").toString()); %>! Η αίτησή σου έχει αποσταλεί στον andministrator για έγκριση!</p></h3>
+<%
+    } 
+    else {
+%> 
+    kati allo
+
+<%
+    }
 %>

@@ -1,5 +1,36 @@
 <%-- any content can be specified here e.g.: --%>
+<%@page import="entities.Role"%>
+<%@page import="extensions.Service"%>
+<%@page import="extensions.Permission"%>
+
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    
+    String path = "/TEDex";
+    String sessionUsername = "";
+    String userPath = "users";
+    String requestPersonal = "";
+    
+    ArrayList<Permission> permissions = new ArrayList<Permission>();
+    
+    if (request.getSession().getAttribute("permissions" + request.getSession().getId()) != null){
+        permissions = (ArrayList<Permission>) request.getSession().getAttribute("permissions" + request.getSession().getId());
+        
+        
+        if (permissions.contains(Permission.administrator))
+            path = "/TEDex/administrator";
+    }
+    
+    if (request.getParameter("personal") != null) {
+            requestPersonal = request.getParameter("personal");
+    }
+    
+    if (request.getSession().getAttribute("username" + request.getSession().getId()) != null) {
+         sessionUsername = (String) request.getSession().getAttribute("username" + request.getSession().getId());
+         userPath = Service.USER.toString() + "?personal=" + sessionUsername;
+    }
+%>
 <!doctype html>
 <html>
     <head>
@@ -33,7 +64,20 @@
                 }
             }
         </style>
-
+<script>
+    bootstrap_alert = function() {
+    };
+    bootstrap_alert.success = function(message) {
+        $('.alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
+    };
+    bootstrap_alert.warning = function(message) {
+        $('.alert_placeholder').html('<div class="alert"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
+    };
+    bootstrap_alert.error = function(message) {
+        $('.alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>');
+    };
+</script>
+<script src="Bootstrap/js/validate.min.js"></script>
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements
         <!--[if lt IE 9]>
           <script src="Bootstrap/js/html5shiv.js"></script>
@@ -48,13 +92,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="brand" href="/TEDex">TEDex</a>
+                    <a class="brand" href="<%= path %>">TEDex</a>
                     <div class="nav-collapse collapse">
-                        <%
-                            if (request.getSession().getAttribute("username") != null) {
-                                String username = (String) request.getSession().getAttribute("username");
-                                out.println("<p class=\"navbar-text pull-right\">Γειά σου <a href=\"users?username=" + username + "\" class=\"navbar-link\">" + username + "</a> <a href=\"logout\"> Έξοδος</a></p>");
-                            }%>
+                        <% if(!sessionUsername.isEmpty()) { %> 
+                        <p class="navbar-text pull-right">Γειά σου <a href="<%= userPath %>" class="navbar-link"><%= sessionUsername %></a> <a href="logout?personal=<%=sessionUsername%>">Έξοδος</a></p>
+                        <% } %>
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
